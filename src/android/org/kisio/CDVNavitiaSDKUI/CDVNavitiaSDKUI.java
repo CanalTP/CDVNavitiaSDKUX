@@ -103,7 +103,13 @@ public class CDVNavitiaSDKUI extends CordovaPlugin {
             Intent intent = new Intent(context, JourneysActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             JourneysRequest request = new JourneysRequest(params.getString("originId"), params.getString("destinationId"));
-
+            
+            if (params.has("basePath")) {
+                request.setBasePath(params.getString("basePath"));
+            }
+            if (params.has("debugUrl")) {
+                request.setDebugUrl(params.getString("debugUrl"));
+            }
             if (params.has("originLabel")) {
                 request.setOriginLabel(params.getString("originLabel"));
             }
@@ -136,9 +142,6 @@ public class CDVNavitiaSDKUI extends CordovaPlugin {
             }
             if (params.has("addPoiInfos")) {
                 request.setAddPoiInfos(getStringListFromJsonArray(params.getJSONArray("addPoiInfos")));
-            }
-            if (params.has("directPath")) {
-                request.setDirectPath(params.getString("directPath"));
             }
 
             intent.putExtra(Constant.JOURNEYS_REQUEST, request);

@@ -1,11 +1,5 @@
 repositories {
-    // mavenLocal()
-    maven {
-        url  "https://dl.bintray.com/navitiasdkteam/NavitiaSDK"
-    }
-    maven {
-        url "https://maven.google.com"
-    }
+    mavenLocal()
 }
 
 def DEFAULT_MIN_SDK_VERSION = 19
@@ -43,6 +37,6 @@ ext.postBuildExtras = {
 }
 
 dependencies {
-    implementation 'org.kisio.sdk:navitia-sdk-ui:1.7.0'
+    implementation 'org.kisio.sdk:navitia-sdk-ui:10.10.10'
     implementation 'com.android.support:appcompat-v7:27.1.1'
 }

@@ -80,7 +80,13 @@ import NavitiaSDKUI
         let originId: String = arguments["originId"] as? String ?? ""
         let destinationId: String = arguments["destinationId"] as? String ?? ""
         var journeysRequest = JourneysRequest(originId: originId, destinationId: destinationId)
-
+        
+        if arguments["basePath"] != nil {
+            NavitiaSDKAPI.basePath = arguments["basePath"] as? String ?? ""
+        }
+        if arguments["debugUrl"] != nil {
+            journeysRequest.debugURL = arguments["debugUrl"] as? String ?? ""
+        }
         if arguments["originLabel"] != nil {
             journeysRequest.originLabel = arguments["originLabel"] as? String ?? ""
         }
@@ -118,9 +124,6 @@ import NavitiaSDKUI
         }
         if arguments["addPoiInfos"] != nil {
             journeysRequest.addPoiInfos = self.arrayToEnum(arguments["addPoiInfos"]!) as [JourneysRequestBuilder.AddPoiInfos]
-        }
-        if arguments["directPath"] != nil, let directPath = self.anyToEnum(arguments["directPath"]!) as JourneysRequestBuilder.DirectPath? {
-            journeysRequest.directPath = directPath
         }
         
         return journeysRequest
